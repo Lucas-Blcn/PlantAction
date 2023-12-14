@@ -1,0 +1,18 @@
+
+<div class="container mt-5">
+
+  <div class="form-template">
+    <%= simple_form_for(plant) do |f| %>
+      <%= f.input :title, placeholder: "Titre de votre produit", class: "input-form", label:false %>
+
+      <%= f.input :category, collection: Plant::VALID_CATEGORIES, prompt: 'Choisissez une catégorie', input_html: {class: 'input-form'}, label:false %>
+      <%= f.input :price, class: "input-form",
+                  label: "Prix par mois (€/mois)"%>
+      <%= f.input :photos, as: :file, input_html: { multiple: true }, class: "input-form" %>
+      <div class="text-center">
+        <%= f.button :submit, class: "custom-btn-submit" %>
+      </div>
+    <% end %>
+  </div>
+
+</div>

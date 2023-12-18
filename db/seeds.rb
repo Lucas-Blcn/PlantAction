@@ -29,6 +29,7 @@ categories = %w[grasse feuillue piquante ligneux herbacee vivace]
 
 file_plant1 = URI.open("https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHBsYW50fGVufDB8fDB8fHww")
 file_plant2 = URI.open("https://images.unsplash.com/photo-1453904300235-0f2f60b15b5d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fHBsYW50fGVufDB8fDB8fHww")
+file_plant3 = URI.open("https://images.unsplash.com/photo-1555803741-1ac759ac2f53?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8b2lzZWF1JTIwZGUlMjBwYXJhZGlzfGVufDB8fDB8fHww")
 
 plant1 = Plant.create!(
   category: categories[rand(0..5)],
@@ -45,3 +46,11 @@ plant2 = Plant.create!(
   user_id: user2.id
 )
 plant2.photos.attach(io: file_plant2, filename: "nes.png", content_type: "image/png")
+
+plant3 = Plant.create!(
+  category: categories[rand(0..5)],
+  price: rand(5..35),
+  title: Faker::Movie.title,
+  user_id: user2.id
+)
+plant3.photos.attach(io: file_plant3, filename: "nes.png", content_type: "image/png")

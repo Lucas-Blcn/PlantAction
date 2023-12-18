@@ -1,14 +1,19 @@
 
 <div class="text-center mt-5">
-  <h1>Bonjour <%= current_user.first_name %> ! <br>Tous nos produits</h1>
-  <h2><em>N'achetez plus, louez !</em></h2>
+  <% if user_signed_in? %>
+    <h1>Bonjour <%= current_user.first_name %> ! <br><br>Tous nos produits</h1>
+    <h2><em>N'achetez plus, louez !</em></h2>
+    <% else %>
+      <h1>Bonjour! <br>Tous nos produits</h1>
+      <h2><em>N'achetez plus, louez !</em></h2>
+  <% end %>
 </div>
 
 <div class="container mt-5">
   <div class="row justify-content-center">
     <% @plants.each do |plant| %>
       <div class="col-md-6 mb-5 position-relative">
-        <div class="card mx-auto" style="width: 18rem;">
+        <div class="card mx-auto">
           <% plant.photos.each do |photo| %>
             <%= cl_image_tag photo.key, crop: :fill, class: "plant-img", style: "object-fit: cover;" %>
           <% end %>

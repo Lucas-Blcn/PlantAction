@@ -1,0 +1,33 @@
+<div class="text-center mt-5">
+  <% if user_signed_in? %>
+    <h1>Réserver "<%= @plant.title %>" </h1>
+  <% end %>
+
+</div>
+<div class="form-template pb-2 mt-5">
+  <%= simple_form_for [@plant, @booking] do |f| %>
+  <%= f.input :start_date,
+              as: :string,
+              label: "Début de location",
+              input_html: {
+                data: {
+                  datepicker_target: 'startDate',
+                  controller: "datepicker" } }
+  %>
+
+ <%= f.input :end_date,
+              as: :string,
+              label: "Fin de location",
+              input_html: {
+                data: {
+                  datepicker_target: 'endDate',
+                  controller: "datepicker" } }
+  %>
+
+  <div class="d-flex container justify-content-center align-center">
+      <%= f.button :submit,class: "custom-btn-bottom my-0 mt-3" %>
+    </div>
+  </div>
+
+  <% end %>
+</div>

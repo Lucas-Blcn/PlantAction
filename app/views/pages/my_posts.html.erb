@@ -1,0 +1,43 @@
+<div class="container">
+
+    <div class="d-flex flex-column align-items-center w-100">
+      <p class="text-center mt-5" style="width: fit-content;" >All my <%=current_user.plants.count%> plants</p>
+      <%= link_to new_plant_path, class: "my-3" do %>
+        <i class="fa-solid fa-plus" style="color:#000000 ; font-size: 24px;"></i>
+      <% end %>
+    </div>
+
+  <div class="row">
+    <% @plants.each do |plant| %>
+      <%= link_to plant_path(plant), class:"text-decoration-none p-0" do %>
+      <div class="col-md-6 mb-5 position-relative">
+        <div class="card mx-auto mb-3">
+          <div class="position-relative">
+            <% if plant.photos.attached? %>
+               <%= cl_image_tag plant.photos[0].key, crop: :fill, class: "w-100 h-100", style: "object-fit: cover;" %>
+               <%# DELETE %>
+                <div>
+                  <p>
+                  <%= link_to plant_path(plant), data: { turbo_method: :delete, turbo_confirm: 'Delete this plants?' } do %>
+                    <i class="fas fa-trash" style="color:#000 ; font-size: 24px; position: absolute; top: 10px; right: 10px;"></i>
+                  <% end %>
+                </p>
+                </div>
+            <% else %>
+              <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2tpfGVufDB8fDB8fHww"alt="" style="width: 100%; height: 100%; object-fit: cover;">
+            <% end %>
+          </div>
+
+          <div class="d-flex mt-3 align-items-center px-3 w-100">
+            <p class="card-text mb-1 flex-grow-1" ><%= plant.title %></p>
+            <div class ="price-container pt-2">
+              <% @price = plant.price %>
+            </div>
+          </div>
+        </div>
+
+      <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

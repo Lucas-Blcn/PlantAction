@@ -7,7 +7,7 @@ class PlantsController < ApplicationController
   end
 
   def show
-    @booking
+    @booking = Booking.new
   end
 
   def new
